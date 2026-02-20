@@ -1,7 +1,7 @@
 Automated Power Grid Light Sensor System
 
 Created by: Ahrar Shah & Ayan Ishaque
-Date: 10 February 2026
+Date: 27 January 2026
 Zone: Power Grid
 
 Project Overview
