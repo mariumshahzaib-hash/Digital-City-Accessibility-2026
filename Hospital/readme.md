@@ -1,6 +1,6 @@
 Automated Hospital Triage System
 Created by: Mishaal Khurram, Wania Farrukh, Eshaal Moazzam, Zenia Fahad
-Date: [Today's date]
+Date: 27-01-2026
 Zone: Hospital Systems
 What My Code Does
 My code operates an automated hospital triage system that evaluates patients based on their pain levels (rated 1-10). The system categorizes patients into different priority levels: critical cases (pain 8-10) are sent immediately to the emergency room, urgent cases (pain 5-7) are scheduled to see a doctor within 30 minutes, and routine cases (pain 1-4) receive regular appointment scheduling. This ensures patients receive care based on the severity of their condition.
