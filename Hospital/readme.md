@@ -1,5 +1,5 @@
 Automated Hospital Triage System
-Created by: [Write your full name]
+Created by: Mishaal Khurram, Wania Farrukh, Eshaal Moazzam, Zenia Fahad
 Date: [Today's date]
 Zone: Hospital Systems
 What My Code Does
