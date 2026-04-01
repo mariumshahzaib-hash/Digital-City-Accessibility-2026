@@ -1,1 +1,191 @@
+# ========================================
+# SMART CITY SIMULATION - MERGED SYSTEM
+# All three tiers integrated into one
+# Run in GitHub Codespaces: python smart_city.py
+# ========================================
 
+def tier3_power_grid():
+    """
+    TIER 3: ENGINEER - Power Grid Light Sensor
+    Mission: Controls city power based on light level
+    Security Key: CRYSTAL_CLEAR
+    """
+    print("\n" + "="*50)
+    print("💡 TIER 3: POWER GRID LIGHT SENSOR STARTING...")
+    print("="*50)
+
+    try:
+        light_level = int(input("Enter light level (0-100): "))
+
+        if light_level < 0 or light_level > 100:
+            print("⚠️  Error: Light level must be between 0 and 100")
+            return False
+
+        elif light_level < 30:
+            print("🌙 LOW LIGHT - Turning street lights ON")
+            print("🔑 Security Key: CRYSTAL_CLEAR")
+            print("✅ Power Grid: ONLINE")
+            return True
+
+        elif light_level < 70:
+            print("☁️  MEDIUM LIGHT - Lights at 50% brightness")
+            print("✅ Power Grid: ONLINE")
+            return True
+
+        else:
+            print("☀️  BRIGHT LIGHT - Street lights OFF")
+            print("✅ Power Grid: ONLINE")
+            return True
+
+    except ValueError:
+        print("🛡️  ERROR BLOCKED! Invalid input detected.")
+        print("Please enter a NUMBER between 0 and 100")
+        print("❌ Power Grid: OFFLINE")
+        return False
+
+    except Exception as e:
+        print("🛡️  UNKNOWN ERROR BLOCKED!")
+        print("Error type: " + str(e))
+        print("❌ Power Grid: OFFLINE")
+        return False
+
+
+def tier2_hospital_triage(grid_powered):
+    """
+    TIER 2: ARCHITECT - Hospital Triage System
+    Mission: Route patients based on pain level
+    Security Key: HEARTBEAT
+    Depends on: Tier 3 Power Grid
+    """
+    print("\n" + "="*50)
+    print("🏥 TIER 2: HOSPITAL TRIAGE SYSTEM STARTING...")
+    print("="*50)
+
+    if not grid_powered:
+        print("⚡ No power from grid — Hospital system OFFLINE")
+        print("❌ Hospital Triage: OFFLINE")
+        return False
+
+    print("✅ Power received from grid")
+
+    try:
+        pain_level = int(input("Enter patient pain level (1-10): "))
+
+        if pain_level >= 8:
+            print("🚨 CRITICAL - Send to Emergency Room immediately!")
+            print("🔑 Security Key: HEARTBEAT")
+
+        elif pain_level >= 5:
+            print("⚠️  URGENT - See doctor within 30 minutes")
+
+        elif pain_level >= 1:
+            print("ℹ️  ROUTINE - Schedule regular appointment")
+
+        else:
+            print("❓ Invalid pain level - Please re-enter (1-10)")
+            print("❌ Hospital Triage: ERROR")
+            return False
+
+        print("✅ Hospital Triage: ACTIVE")
+        return True
+
+    except ValueError:
+        print("🛡️  ERROR BLOCKED! Please enter a number between 1 and 10")
+        print("❌ Hospital Triage: OFFLINE")
+        return False
+
+    except Exception as e:
+        print("🛡️  UNKNOWN ERROR BLOCKED! Error: " + str(e))
+        print("❌ Hospital Triage: OFFLINE")
+        return False
+
+
+def tier1_park_ramp(hospital_active):
+    """
+    TIER 1: SCAVENGER - Water Park Ramp System
+    Mission: Deploy ramp based on weight sensor
+    Security Key: RAMP2025
+    Depends on: Tier 2 Hospital (which depends on Tier 3 Grid)
+    """
+    print("\n" + "="*50)
+    print("🏞️  TIER 1: PARK RAMP SYSTEM STARTING...")
+    print("="*50)
+
+    if not hospital_active:
+        print("🏥 Hospital system offline — Ramp system SUSPENDED")
+        print("❌ Park Ramp: OFFLINE")
+        return False
+
+    print("✅ Hospital system confirmed active")
+
+    try:
+        weight = int(input("Enter weight detected (in kg): "))
+
+        if weight < 10:
+            print("⏸️  Standby - No action needed")
+
+        elif weight >= 10:
+            print("♿ Deploying Ramp... Access Granted!")
+            print("🔑 Security Key: RAMP2025")
+
+        else:
+            print("⚠️  Unknown weight - Please check sensor")
+            return False
+
+        print("✅ Park Ramp System: ACTIVE")
+        return True
+
+    except ValueError:
+        print("🛡️  ERROR BLOCKED! Please enter a valid weight in kg")
+        print("❌ Park Ramp: OFFLINE")
+        return False
+
+    except Exception as e:
+        print("🛡️  UNKNOWN ERROR BLOCKED! Error: " + str(e))
+        print("❌ Park Ramp: OFFLINE")
+        return False
+
+
+def deploy_smart_city():
+    """
+    MAIN CITY DEPLOYMENT
+    Merges all three tiers into one integrated system.
+    Tier 3 powers Tier 2 which powers Tier 1.
+    """
+    print("\n" + "="*50)
+    print("🏙️  SMART CITY SIMULATION - LIVE DEPLOYMENT")
+    print("="*50)
+    print("Starting all systems in order...")
+
+    # --- TIER 3: Must run first (provides power) ---
+    grid_powered = tier3_power_grid()
+
+    # --- TIER 2: Only runs if grid is online ---
+    hospital_active = tier2_hospital_triage(grid_powered)
+
+    # --- TIER 1: Only runs if hospital is active ---
+    ramp_active = tier1_park_ramp(hospital_active)
+
+    # --- FINAL CITY STATUS REPORT ---
+    print("\n" + "="*50)
+    print("📊 SMART CITY DEPLOYMENT REPORT")
+    print("="*50)
+    print(f"  💡 Power Grid (Tier 3):    {'✅ ONLINE' if grid_powered     else '❌ OFFLINE'}")
+    print(f"  🏥 Hospital Triage (Tier 2): {'✅ ACTIVE' if hospital_active  else '❌ OFFLINE'}")
+    print(f"  🏞️  Park Ramp (Tier 1):     {'✅ ACTIVE' if ramp_active      else '❌ OFFLINE'}")
+
+    if grid_powered and hospital_active and ramp_active:
+        print("\n🎉 SMART CITY FULLY DEPLOYED AND OPERATIONAL!")
+    elif grid_powered:
+        print("\n⚠️  PARTIAL DEPLOYMENT - Check Tier 2 / Tier 1 inputs")
+    else:
+        print("\n❌ DEPLOYMENT FAILED - Power Grid must be fixed first")
+
+    print("="*50)
+
+
+# ========================================
+# ENTRY POINT
+# ========================================
+if __name__ == "__main__":
+    deploy_smart_city()
